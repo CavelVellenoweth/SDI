@@ -385,14 +385,14 @@ int Model::findInvalid(string& str)
 {
 	//returns the position of the invalid character
 	int y;
-	y = str.find_first_of("\/:*?<>|',.#~[]{};()+=_-!Â£$%^&*`Â¬'â€œâ€â€™â€¦Â¸â€“'\"'");
+	y = str.find_first_of("\/:*?<>|',.#~[]{};()+=_-!£$%^&*`¬'“”’…¸–'\"'");
 	return y;
 }
 bool Model::containsInvalidText(string& str)
 {
 	//returns whether the an invalid character exists in the word
 	bool x;
-	x = str.find_first_of("\/:*?<>|',.#~[]{};()+=_-!Â£$%^&*`Â¬'â€œâ€â€™â€¦Â¸â€“'\"'") != string::npos;
+	x = str.find_first_of("\/:*?<>|',.#~[]{};()+=_-!£$%^&*`¬'“”’…¸–'\"'") != string::npos;
 	return x;
 }
 void Model::incrementCounter(char a, totals& tot)
