@@ -10,44 +10,11 @@ Controller control;
 View view;
 int counter = 0;
 struct Model::totals
-//the purpose of this struct is to keep a running total of the amount of words beginning with each letter and the number of words of lengths 1-10
+	//the purpose of this struct is to keep a running total of the amount of words beginning with each letter and the number of words of lengths 1-10
 {
-	int A;
-	int B;
-	int C;
-	int D;
-	int E;
-	int F;
-	int G;
-	int H;
-	int I;
-	int J;
-	int K;
-	int L;
-	int M;
-	int N;
-	int O;
-	int P;
-	int Q;
-	int R;
-	int S;
-	int T;
-	int U;
-	int V;
-	int W;
-	int X;
-	int Y;
-	int Z;
-	int one;
-	int two;
-	int three;
-	int four;
-	int five;
-	int six;
-	int seven;
-	int eight;
-	int nine;
-	int ten;
+	char letters[26] = { 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
+	int letterCount[26] = { 0 };
+	vector<int> lengthCount = { 0 };
 }total;
 //total is declared when an instance of model is declared and will contain the totals for the other functions to access.
 vector<string> Model::binarySearch(vector<string>&vec, int current, int min, int max, char character)
@@ -397,123 +364,22 @@ bool Model::containsInvalidText(string& str)
 }
 void Model::incrementCounter(char a, totals& tot)
 {
-	switch (a)
+	for (int i = 0; i < size(tot.letters); i++)
 	{
-	case 'a':
-		tot.A++;
-		break;
-	case 'b':
-		tot.B++;
-		break;
-	case 'c':
-		tot.C++;
-		break;
-	case 'd':
-		tot.D++;
-		break;
-	case 'e':
-		tot.E++;
-		break;
-	case 'f':
-		tot.F++;
-		break;
-	case 'g':
-		tot.G++;
-		break;
-	case 'h':
-		tot.H++;
-		break;
-	case 'i':
-		tot.I++;
-		break;
-	case 'j':
-		tot.J++;
-		break;
-	case 'k':
-		tot.K++;
-		break;
-	case 'l':
-		tot.L++;
-		break;
-	case 'm':
-		tot.M++;
-		break;
-	case 'n':
-		tot.N++;
-		break;
-	case 'o':
-		tot.O++;
-		break;
-	case 'p':
-		tot.P++;
-		break;
-	case 'q':
-		tot.Q++;
-		break;
-	case 'r':
-		tot.R++;
-		break;
-	case 's':
-		tot.S++;
-		break;
-	case 't':
-		tot.T++;
-		break;
-	case 'u':
-		tot.U++;
-		break;
-	case 'v':
-		tot.V++;
-		break;
-	case 'w':
-		tot.W++;
-		break;
-	case 'x':
-		tot.X++;
-		break;
-	case 'y':
-		tot.Y++;
-		break;
-	case 'z':
-		tot.Z++;
-		break;
+		if (tot.letters[i] == a)
+		{
+			tot.letterCount[i]++;
+			break;
+		}
 	}
 }
 void Model::incrementCounter(int x, totals& tot)
 {
-	switch (x)
-	{
-	case 1:
-		tot.one++;
-		break;
-	case 2:
-		tot.two++;
-		break;
-	case 3:
-		tot.three++;
-		break;
-	case 4:
-		tot.four++;
-		break;
-	case 5:
-		tot.five++;
-		break;
-	case 6:
-		tot.six++;
-		break;
-	case 7:
-		tot.seven++;
-		break;
-	case 8:
-		tot.eight++;
-		break;
-	case 9:
-		tot.nine++;
-		break;
-	case 10:
-		tot.ten++;
-		break;
-	}
+	while (x > tot.lengthCount.size())
+		tot.lengthCount.push_back(0);
+
+	tot.lengthCount[x-1]++;
+
 }
 void Model::parseLine(string line, vector<string>& vec)
 {
@@ -600,42 +466,16 @@ void Model::writeFile(vector<string> vec)
 		if (myfile.is_open())
 		{
 			valid = true;
-			myfile << "Number of Words beginning with 'A': " << total.A << "\n";
-			myfile << "Number of Words beginning with 'B': " << total.B << "\n";
-			myfile << "Number of Words beginning with 'C': " << total.C << "\n";
-			myfile << "Number of Words beginning with 'D': " << total.D << "\n";
-			myfile << "Number of Words beginning with 'E': " << total.E << "\n";
-			myfile << "Number of Words beginning with 'F': " << total.F << "\n";
-			myfile << "Number of Words beginning with 'G': " << total.G << "\n";
-			myfile << "Number of Words beginning with 'H': " << total.H << "\n";
-			myfile << "Number of Words beginning with 'I': " << total.I << "\n";
-			myfile << "Number of Words beginning with 'J': " << total.J << "\n";
-			myfile << "Number of Words beginning with 'K': " << total.K << "\n";
-			myfile << "Number of Words beginning with 'L': " << total.L << "\n";
-			myfile << "Number of Words beginning with 'M': " << total.M << "\n";
-			myfile << "Number of Words beginning with 'N': " << total.N << "\n";
-			myfile << "Number of Words beginning with 'O': " << total.O << "\n";
-			myfile << "Number of Words beginning with 'P': " << total.P << "\n";
-			myfile << "Number of Words beginning with 'Q': " << total.Q << "\n";
-			myfile << "Number of Words beginning with 'R': " << total.R << "\n";
-			myfile << "Number of Words beginning with 'S': " << total.S << "\n";
-			myfile << "Number of Words beginning with 'T': " << total.T << "\n";
-			myfile << "Number of Words beginning with 'U': " << total.U << "\n";
-			myfile << "Number of Words beginning with 'V': " << total.V << "\n";
-			myfile << "Number of Words beginning with 'W': " << total.W << "\n";
-			myfile << "Number of Words beginning with 'X': " << total.X << "\n";
-			myfile << "Number of Words beginning with 'Y': " << total.Y << "\n";
-			myfile << "Number of Words beginning with 'Z': " << total.Z << "\n";
-			myfile << "Number of Words that are '1' Letters Long: " << total.one << "\n";
-			myfile << "Number of Words that are '2' Letters Long: " << total.two << "\n";
-			myfile << "Number of Words that are '3' Letters Long: " << total.three << "\n";
-			myfile << "Number of Words that are '4' Letters Long: " << total.four << "\n";
-			myfile << "Number of Words that are '5' Letters Long: " << total.five << "\n";
-			myfile << "Number of Words that are '6' Letters Long: " << total.six << "\n";
-			myfile << "Number of Words that are '7' Letters Long: " << total.seven << "\n";
-			myfile << "Number of Words that are '8' Letters Long: " << total.eight << "\n";
-			myfile << "Number of Words that are '9' Letters Long: " << total.nine << "\n";
-			myfile << "Number of Words that are '10' Letters Long: " << total.ten << "\n";
+			//writes the count of words begginning with each letter to the file
+			for (int i = 0; i < size(total.letters); i++)
+			{
+				myfile << "Number of Words beginning with '" << total.letters[i] << "': " << total.letterCount[i] << "\n";
+			}
+			//writes the count of words of each length to the file
+			for (int i = 0; i < size(total.lengthCount); i++)
+			{
+				myfile << "Number of Words that are '" << i+1 << "' Letters Long: " << total.lengthCount[i] << "\n";
+			}
 			myfile << "";
 			myfile << "Alphabetically Sorted List : " << "\n";
 
